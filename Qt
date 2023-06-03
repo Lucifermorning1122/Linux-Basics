@@ -1,0 +1,162 @@
+include "aywidget.h" #include <QCheckBox>
+
+#include <QGridLayout> #include <QGroupBox>
+
+#include <QMenu>
+
+#include <QPushButton> #include <QRadioButton>
+
+#include <Qwindow>
+
+MyWidget::Mywidget(Qwidget parent)
+
+: QWidget(parent)
+
+6
+
+get.cpp
+
+18
+
+Ouse of undeclared identif
+
+12 12
+
+13
+
+14
+
+QGridLayout grid = new QGridLayout;
+
+grid->addWidget(createFirstExclusiveGroup(), 0,0); grid->addWidget(createNonExclusiveGroup(), 0, 1);
+
+setLayout(grid);
+
+setWindowTitle(tr("Group Boxes"));
+
+resize(480,320);
+
+15
+
+16
+
+28
+
+QGroupBox MyWidget::createFirstExclusiveGroup()
+
+Ounknown type name 'QGroupBox
+
+QGroupBox *groupbox = new QGroupBox (tr("Exclusive Radio Button"));
+
+use of undeclared identif
+
+22
+
+23
+
+24
+
+25
+
+26
+
+m.cpp
+
+ndow.cpp
+
+dow.cpp
+
+indow.h
+
+indow.h
+
+27
+
+QRadioButton *radiol = new QRadioButton(tr("&Radio Button 1")); QRadioButton radio2 = new QRadioButton(tr(&Radio Button 2"));
+
+QRadioButton radio3 = new QRadioButton(tr("&Radio Button 3"));
+
+radiol->setChecked(true);
+
+QVBoxLayout *vbox = new QVBoxLayout; vbox->addWidget(radiol);
+
+vbox->addWidget(radio2);
+
+vbox->addWidget(radio3);
+
+vbox->addStretch(1);
+
+groupbox->setLayout(vbox);
+radiol->setChecked(true);
+
+QVBoxLayout *vbox new QVBoxLayout;
+
+vbox->addWidget(radiol); vbox->addWidget(radio2);
+
+vbox->addWidget(radio3);
+
+vbox->addStretch(1);
+
+33
+
+groupbox->setLayout(vbox);
+
+return groupbox;
+
+35 }
+
+036
+
+QGroupBox *MyWidget::createNonExclusiveGroup()
+
+Ounknown type name 'QGroup
+
+38
+
+QGroupBox *groupBox = new QGroupBox (tr("Non-Exclusive Checkboxes
+
+"));
+
+39
+
+groupBox->setFlat(true);
+
+48
+
+QCheckBox *checkBox1 = new QCheckBox (tr("&Checkbox 1"));
+
+41
+
+checkBox1->setChecked(true);
+
+QCheckBox *checkBox2 = new QCheckBox(tr("&Checkbox 2"));
+
+43
+
+QCheckBox tristateBox = new QCheckBox(tr("Tri-&state button"));
+
+tristateBox->setTristate(true);
+
+QVBoxLayout *vbox = new QVBoxLayout:
+
+46
+
+vbox->addWidget(checkBox1);
+
+vbox->addWidget(checkBox2);
+
+48
+
+vbox->addWidget(tristateBox);
+
+49
+
+vbox->addStretch (1);
+
+50
+
+groupBox->setLayout(vbox);
+
+51
+
+return groupBox;
