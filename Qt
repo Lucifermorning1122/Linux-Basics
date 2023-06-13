@@ -1,42 +1,102 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-#include <QMainWindow>
-namespace Ui {
-class MainWindow;
+main.qml
+import QtQuick 2.12
+
+Bannari Amman Institute of Technology. All rights Reserved
+
+WSS Source Book – Qt QML – A Cross Platform Application Development Framework
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+//import QtQuick.Controls 1.4
+Window {
+id: top
+width: 640
+height: 480
+visible: true
+title: qsTr("Hello World")
+Column{
+id:c1
+width:parent.width
+height:400
+anchors.centerIn: parent;
+Row{
+id:row1
+width: parent.width
+height: 60
+spacing:20
+anchors.centerIn: parent;
+Mybutton{
+id:b1
+value:"OK"
+onMyclick: {
+
+console.log("OK clicked "+b1.placeH)
 }
-class MainWindow : public QMainWindow
-{
- Q_OBJECT
-public:
- explicit MainWindow(QWidget *parent = nullptr);
- ~MainWindow();
-private slots:
- void on_actionQuit_triggered();
- void on_actionCopy_triggered();
- void on_actionCut_triggered();
- void on_actionPaste_triggered();
- void on_actionUndo_triggered();
- void on_actionRedo_triggered();
- void on_actionAbout_triggered();
- void on_actionAbout_Qt_triggered();
- void quitApp();
-private:
- Ui::MainWindow *ui;
-};
-#endif // MAINWINDOW_H
+}
+Mybutton{
+id:b2
+value:"CLEAR"
+onMyclick: {
+console.log("CLEAR clicked "+b2.placeH)
+}
+}
+Mybutton{
+id:b3
+value:"DONE"
+onMyclick: {
+console.log("DONE clicked "+b3.placeH)
+}
+}
+}
+}
+}
+
+Mybutton.qml
 
 
+import QtQuick 2.0
+Rectangle{
+id:home1
+color:"blue"
+width: 150
+height: 50
+signal myclick(string value)
+signal myclick2(string value1, string value2)
+function display_2(){
+console.log("my second method")
+}
+property string value;
+Text {
+id: name_home;
+text: home1.value;
+anchors.centerIn: parent;
+font.bold:true;color:"red";
+font.pixelSize:30;
+style: Text.Outline;
+styleColor: "black"
+}
+MouseArea{
+id:msh
+anchors.fill:parent
+// onClicked: {
+// console.log("Mouse Event Happened "+name_home.text)
+// home1.color="aqua"
+// top.display_1();
+// home1.display_2();
+// home1.myclick(tin1.text)
+// home1.myclick2(tin1.text,tin2.text)
+// }
+}
+onMyclick: {
+console.log("Signal Handled",value)
+}
+onMyclick2: {
 
-main.cpp
-
-
-
-#include "mainwindow.h"
-#include <QApplication>
-int main(int argc, char *argv[])
-{
- QApplication a(argc, argv);
- MainWindow w;
- w.show();
- return a.exec();
+console.log("Signal Handled",value1,value2)
+}
+Connections{
+target:msh
+onClicked: {
+home1.myclick(name_home.text)
+home1.myclick2(name_home.text,name_home.text)
+}
 }
